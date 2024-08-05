@@ -1,10 +1,12 @@
 package com.t2208e.JAVA_EAD.controller;
 
+import com.t2208e.JAVA_EAD.dto.StudentInfoDTO;
 import com.t2208e.JAVA_EAD.entity.StudentScore;
 import com.t2208e.JAVA_EAD.service.StudentScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -35,8 +37,12 @@ public class StudentScoreController {
     }
 
     @GetMapping("/grade")
-    public String calculateGrade(@RequestParam double score1, @RequestParam double score2) {
+    public String calculateGrade(@RequestParam BigDecimal score1, @RequestParam BigDecimal score2) {
         double grade = studentScoreService.calculateGrade(score1, score2);
         return studentScoreService.convertScoreToGrade(grade);
+    }
+    @GetMapping("/student-info")
+    public List<StudentInfoDTO> getAllStudentInformation() {
+        return studentScoreService.getAllStudentInformation();
     }
 }

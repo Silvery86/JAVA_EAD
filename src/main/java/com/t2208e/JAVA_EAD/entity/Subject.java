@@ -1,5 +1,6 @@
 package com.t2208e.JAVA_EAD.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class Subject {
     @Column(name = "credit", nullable = false)
     private int credit;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
     private List<StudentScore> studentScores;
 }
